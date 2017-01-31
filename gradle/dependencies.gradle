@@ -1,0 +1,33 @@
+ext {
+    sdkTarget = 25
+    sdkMin = 16
+
+    verBuildTools = '25.0.2'
+
+    //plugins
+    verAndroidGradlePlugins = '2.3.0-beta3'
+
+    //kotlin
+    verKotlin = '1.1.0-beta-22'
+    verKodein3 = '3.1.0'
+    verRxBindings = '1.0.0'
+    verJetpack = '0.14.2'
+    verSmuggler = '0.12.9'
+
+    //google
+    verSupport = '25.1.1'
+
+    //rx
+    verRxJava = '1.+'
+    verRxJava2 = '2.0.3'
+    verRxComprehensions = '1.1.0'
+    verRx2Android = '2.0.0'
+    verRx2Lifecycle = '2.0.1'
+    verRxRelay2 = '2.0.0'
+    verRxInterop = '0.8.4'
+
+    verTimber = '4.3.1'
+    verMugen = '1.0.3'
+
+    verStetho = '1.4.1'
+}

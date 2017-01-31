@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: "io.mironov.smuggler"
+
+android {
+    compileSdkVersion sdkTarget
+    buildToolsVersion verBuildTools
+    defaultConfig {
+        minSdkVersion sdkMin
+        targetSdkVersion sdkTarget
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$verKotlin"
+    compile "com.android.support:appcompat-v7:$verSupport"
+    compile "com.android.support:recyclerview-v7:$verSupport"
+
+    compile 'com.vinaysshenoy:mugen:1.0.2'
+    compile "com.github.akarnokd:rxjava2-interop:$verRxInterop"
+    compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
+    compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
+    compile "com.github.pakoito.RxComprehensions:rxcomprehensions2:$verRxComprehensions"
+    compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
+    compile "com.jakewharton.rxrelay2:rxrelay:$verRxRelay2"
+    compile "com.trello.rxlifecycle2:rxlifecycle-android:$verRx2Lifecycle"
+    compile "com.trello.rxlifecycle2:rxlifecycle-navi:$verRx2Lifecycle"
+    compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$verRx2Lifecycle"
+    compile "io.reactivex.rxjava2:rxandroid:$verRx2Android"
+}

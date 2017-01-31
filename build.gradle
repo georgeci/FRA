@@ -1,0 +1,27 @@
+buildscript {
+    apply from: "$rootDir/gradle/dependencies.gradle"
+
+    repositories {
+        jcenter()
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$verAndroidGradlePlugins"
+        classpath "io.mironov.smuggler:smuggler-plugin:$verSmuggler"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$verKotlin"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

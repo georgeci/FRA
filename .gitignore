@@ -1,0 +1,17 @@
+#mac specific
+.DS_Store
+
+#gradle caches
+.gradle
+
+#machine specific
+/local.properties
+/captures
+
+#user-specific idea settins
+/.idea/
+*.iml
+
+#generated
+/build
+/*/build
