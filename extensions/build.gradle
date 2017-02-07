@@ -33,6 +33,7 @@ dependencies {
     compile "com.github.akarnokd:rxjava2-interop:$verRxInterop"
     compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
     compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$verRxBindings"
     compile "com.github.pakoito.RxComprehensions:rxcomprehensions2:$verRxComprehensions"
     compile "io.reactivex.rxjava2:rxjava:$verRxJava2"
     compile "com.jakewharton.rxrelay2:rxrelay:$verRxRelay2"
@@ -40,4 +41,6 @@ dependencies {
     compile "com.trello.rxlifecycle2:rxlifecycle-navi:$verRx2Lifecycle"
     compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:$verRx2Lifecycle"
     compile "io.reactivex.rxjava2:rxandroid:$verRx2Android"
+    compile "org.funktionale:funktionale-option:1.0.0-beta"
+
 }
