@@ -30,11 +30,7 @@ class PersonsViewModel :
     override val navigateToDetailConsumer = publishRelay<Person>()
 
     fun saveState(saver: (SavedState) -> Unit) {
-        saver(SavedState(
-            listState = screenState.value,
-            scrollState = scrollPositionState.value,
-            newPersonInputState = newPersonInputState.value
-        ))
+
     }
 
     fun restoreState(savedState: SavedState?) {
