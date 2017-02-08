@@ -14,18 +14,14 @@ import org.funktionale.option.Option
 class PersonsViewModel :
     PersonsCommonViewModel,
     PersonsListViewModel,
-    PersonsCreateViewModel,
     PersonsRouterViewModel {
     override val screenState = behaviorRelay<PersonsListState>()
     override val scrollPositionState = behaviorRelay<Option<Int>>()
-    override val newPersonInputState = behaviorRelay<String>()
 
     override val itemsState = behaviorRelay<List<Person>>(listOf())
 
     override val refreshCommand = publishRelay<Any>()
     override val itemClickCommand = publishRelay<Person>()
-
-    override val createPersonCommand = publishRelay<Unit>()
 
     override val navigateToDetailConsumer = publishRelay<Person>()
 

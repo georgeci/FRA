@@ -5,7 +5,8 @@ import arch.screen.persons.presentation.android.LifecycleStreams
 import arch.screen.persons.presentation.android.bindLifecycleToViewModel
 import arch.screen.persons.presentation.common.PersonsCommonView
 import arch.screen.persons.presentation.common.bindPersonsCommonUiWithViewModel
-import arch.screen.persons.presentation.create.PersonsCreateView
+import arch.screen.persons.presentation.create.PersonsCreateViewHolder
+import arch.screen.persons.presentation.create.PersonsCreateViewModel
 import arch.screen.persons.presentation.create.bindPersonsCreateUiWithViewModel
 import arch.screen.persons.presentation.list.PersonsListView
 import arch.screen.persons.presentation.list.bindPersonsListUiWithViewModel
@@ -18,10 +19,11 @@ import io.reactivex.disposables.Disposable
 fun bindRootUiWithViewModel(
     commonView: PersonsCommonView,
     listView: PersonsListView,
-    createView: PersonsCreateView,
+    createViewHolder: PersonsCreateViewHolder,
     router: PersonsRouter,
     lifecycleStreams: LifecycleStreams,
     viewModel: PersonsViewModel,
+    personsCreateViewModel: PersonsCreateViewModel,
     schedulers: SchedulersFactory
 ): Disposable = CompositeDisposable(
     bindPersonsCommonUiWithViewModel(
@@ -30,8 +32,8 @@ fun bindRootUiWithViewModel(
         schedulers
     ),
     bindPersonsCreateUiWithViewModel(
-        createView,
-        viewModel,
+        createViewHolder,
+        personsCreateViewModel,
         schedulers
     ),
     bindPersonsListUiWithViewModel(

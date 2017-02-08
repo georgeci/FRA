@@ -3,13 +3,14 @@ package arch.screen.persons
 import android.os.Bundle
 import arch.R
 import arch.domain.interactor.GetPersonsInteractor
-import arch.screen.persons.presentation.android.LifecycleStreams
-import arch.screen.persons.presentation.common.PersonsCommonView
-import arch.screen.persons.presentation.create.PersonsCreateView
-import arch.screen.persons.presentation.list.PersonsListView
-import arch.screen.persons.features.PersonsViewModel
 import arch.screen.persons.bindings.bindRootUiWithViewModel
 import arch.screen.persons.bindings.bindViewModelsWithFeatures
+import arch.screen.persons.features.PersonsViewModel
+import arch.screen.persons.presentation.android.LifecycleStreams
+import arch.screen.persons.presentation.common.PersonsCommonView
+import arch.screen.persons.presentation.create.PersonsCreateViewHolder
+import arch.screen.persons.presentation.create.PersonsCreateViewModel
+import arch.screen.persons.presentation.list.PersonsListView
 import arch.screen.persons.presentation.router.PersonsRouter
 import arch.screen.persons.screen_state.PersonsStateMachine
 import com.github.salomonbrys.kodein.Kodein
@@ -27,11 +28,12 @@ class PersonsActivity : BaseActivity() {
 
     private val commonViewProvider by injector.provider<PersonsCommonView>()
     private val listViewProvider by injector.provider<PersonsListView>()
-    private val createViewProvider by injector.provider<PersonsCreateView>()
+    private val createViewHolderProvider by injector.provider<PersonsCreateViewHolder>()
     private val routerProvider by injector.provider<PersonsRouter>()
     private val lifecycleStreams: LifecycleStreams by injector.instance()
 
     private val viewModel: PersonsViewModel by injector.instance()
+    private val createViewModel: PersonsCreateViewModel by injector.instance()
 
     private val interactor: GetPersonsInteractor by injector.instance()
     private val stateMachine: PersonsStateMachine by injector.instance()
@@ -62,10 +64,11 @@ class PersonsActivity : BaseActivity() {
         screenDisposable += bindRootUiWithViewModel(
             commonViewProvider(),
             listViewProvider(),
-            createViewProvider(),
+            createViewHolderProvider(),
             routerProvider(),
             lifecycleStreams,
             viewModel,
+            createViewModel,
             schedulers
         )
     }

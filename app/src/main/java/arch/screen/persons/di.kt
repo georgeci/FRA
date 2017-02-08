@@ -5,19 +5,19 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import arch.domain.interactor.GetPersonsInteractor
 import arch.domain.interactor.personInteractor
+import arch.screen.persons.features.PersonsViewModel
 import arch.screen.persons.presentation.android.LifecycleStreams
 import arch.screen.persons.presentation.android.LifecycleStreamsImpl
 import arch.screen.persons.presentation.common.PersonsCommonView
 import arch.screen.persons.presentation.common.PersonsCommonViewImpl
-import arch.screen.persons.presentation.create.PersonsCreateView
-import arch.screen.persons.presentation.create.PersonsCreateViewImpl
+import arch.screen.persons.presentation.create.PersonsCreateViewHolder
+import arch.screen.persons.presentation.create.PersonsCreateViewModel
+import arch.screen.persons.presentation.create.PersonsCreateViewModelImpl
 import arch.screen.persons.presentation.list.PersonAdapter
 import arch.screen.persons.presentation.list.PersonsListView
 import arch.screen.persons.presentation.list.PersonsListViewImpl
-import arch.screen.persons.features.PersonsViewModel
 import arch.screen.persons.presentation.router.PersonsRouter
 import arch.screen.persons.presentation.router.PersonsRouterImpl
-import arch.screen.persons.screen_state.PersonsListState
 import arch.screen.persons.screen_state.PersonsStateMachine
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.instance
@@ -37,8 +37,8 @@ fun PersonsActivity.createDi() = Kodein.Module {
         PersonsCommonViewImpl(view = instance())
     }
 
-    bind<PersonsCreateView>() with singleton {
-        PersonsCreateViewImpl(view = instance())
+    bind<PersonsCreateViewHolder>() with singleton {
+        PersonsCreateViewHolder(view = instance())
     }
 
     bind<PersonAdapter>() with singleton {
@@ -75,5 +75,9 @@ fun PersonsActivity.createDi() = Kodein.Module {
 
     bind<PersonsViewModel>() with singleton {
         PersonsViewModel()
+    }
+
+    bind<PersonsCreateViewModel>() with singleton {
+        PersonsCreateViewModelImpl()
     }
 }
