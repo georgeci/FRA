@@ -9,6 +9,7 @@ import arch.screen.persons.presentation.create.PersonsCreateViewHolder
 import arch.screen.persons.presentation.create.PersonsCreateViewModel
 import arch.screen.persons.presentation.create.bindPersonsCreateUiWithViewModel
 import arch.screen.persons.presentation.list.PersonsListView
+import arch.screen.persons.presentation.list.PersonsListViewModel
 import arch.screen.persons.presentation.list.bindPersonsListUiWithViewModel
 import arch.screen.persons.presentation.router.PersonsRouter
 import arch.screen.persons.presentation.router.bindPersonsRouterToViewModel
@@ -24,6 +25,7 @@ fun bindRootUiWithViewModel(
     lifecycleStreams: LifecycleStreams,
     viewModel: PersonsViewModel,
     personsCreateViewModel: PersonsCreateViewModel,
+    personsListViewModel: PersonsListViewModel,
     schedulers: SchedulersFactory
 ): Disposable = CompositeDisposable(
     bindPersonsCommonUiWithViewModel(
@@ -38,7 +40,7 @@ fun bindRootUiWithViewModel(
     ),
     bindPersonsListUiWithViewModel(
         listView,
-        viewModel,
+        personsListViewModel,
         schedulers
     ),
     bindPersonsRouterToViewModel(

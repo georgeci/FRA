@@ -21,6 +21,7 @@ fun bindGetPersonsListFeature(
         .doOnNext { Log.d("QOQ items", it.javaClass.simpleName) }
         .switchMap { current ->
             commonViewModel.refreshCommand
+                .doOnNext { stateMachine.startProgress.accept(Unit) }
                 .doOnNext { Log.d("QOQ refresh", it.javaClass.simpleName) }
                 .switchMap { interactor(current, schedulers) }
         }.publish()
@@ -31,7 +32,6 @@ fun bindGetPersonsListFeature(
         connectable.ofType(PersonsResolution.Content::class.java)
             .map { it.items }
             .subscribe(listViewModel.itemsState),
-        commonViewModel.refreshCommand.subscribe(stateMachine.startProgress),
 
         stateMachine.observe().subscribe(commonViewModel.screenState),
         connectable.connect()

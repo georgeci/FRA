@@ -5,6 +5,7 @@ import extensions.behaviorRelay
 import extensions.publishRelay
 
 interface PersonsCreateViewModel {
+
     val titleState: Relay<String>
 
     val createPersonCommand: Relay<Any>

@@ -1,13 +1,14 @@
 package arch.screen.persons.presentation.list
 
 import arch.domain.model.Person
-import com.jakewharton.rxrelay2.BehaviorRelay
-import com.jakewharton.rxrelay2.PublishRelay
+import extensions.behaviorRelay
+import extensions.publishRelay
 import org.funktionale.option.Option
 
-interface PersonsListViewModel {
-    val itemsState: BehaviorRelay<List<Person>>
-    val scrollPositionState: BehaviorRelay<Option<Int>>
+class PersonsListViewModel {
+    val scrollPositionState = behaviorRelay<Option<Int>>()
 
-    val itemClickCommand: PublishRelay<Person>
+    val itemsState = behaviorRelay<List<Person>>(listOf())
+
+    val itemClickCommand = publishRelay<Person>()
 }

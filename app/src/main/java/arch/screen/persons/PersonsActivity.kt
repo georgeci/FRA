@@ -11,6 +11,7 @@ import arch.screen.persons.presentation.common.PersonsCommonView
 import arch.screen.persons.presentation.create.PersonsCreateViewHolder
 import arch.screen.persons.presentation.create.PersonsCreateViewModel
 import arch.screen.persons.presentation.list.PersonsListView
+import arch.screen.persons.presentation.list.PersonsListViewModel
 import arch.screen.persons.presentation.router.PersonsRouter
 import arch.screen.persons.screen_state.PersonsStateMachine
 import com.github.salomonbrys.kodein.Kodein
@@ -34,6 +35,7 @@ class PersonsActivity : BaseActivity() {
 
     private val viewModel: PersonsViewModel by injector.instance()
     private val createViewModel: PersonsCreateViewModel by injector.instance()
+    private val personsListViewModel: PersonsListViewModel by injector.instance()
 
     private val interactor: GetPersonsInteractor by injector.instance()
     private val stateMachine: PersonsStateMachine by injector.instance()
@@ -57,6 +59,7 @@ class PersonsActivity : BaseActivity() {
         super.onResume()
         screenDisposable += bindViewModelsWithFeatures(
             viewModel,
+            personsListViewModel,
             interactor,
             stateMachine,
             schedulers
@@ -69,6 +72,7 @@ class PersonsActivity : BaseActivity() {
             lifecycleStreams,
             viewModel,
             createViewModel,
+            personsListViewModel,
             schedulers
         )
     }
@@ -77,15 +81,5 @@ class PersonsActivity : BaseActivity() {
         String
         super.onPause()
         screenDisposable.clear()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        viewModel.restoreState(null)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        viewModel.saveState { /**/ }
     }
 }

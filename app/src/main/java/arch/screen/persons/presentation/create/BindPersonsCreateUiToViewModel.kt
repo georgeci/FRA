@@ -14,14 +14,14 @@ fun bindPersonsCreateUiWithViewModel(
     viewModel: PersonsCreateViewModel,
     schedulers: SchedulersFactory
 ): Disposable = CompositeDisposable(
-    viewHolder.createButton.clicks().rx2()
-        .subscribe(viewModel.createPersonCommand),
     viewHolder.titleInput.textChanges().rx2()
         .map(CharSequence::toString)
         .subscribe(viewModel.titleState),
     viewModel.titleState
         .observeOn(schedulers.mainThread())
         .subscribe(viewHolder.titleInput.changeText()),
+    viewHolder.createButton.clicks().rx2()
+        .subscribe(viewModel.createPersonCommand),
     viewModel.showToastInteraction
         .observeOn(schedulers.mainThread())
         .subscribe(viewHolder.view.showToast())

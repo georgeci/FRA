@@ -16,6 +16,7 @@ import arch.screen.persons.presentation.create.PersonsCreateViewModelImpl
 import arch.screen.persons.presentation.list.PersonAdapter
 import arch.screen.persons.presentation.list.PersonsListView
 import arch.screen.persons.presentation.list.PersonsListViewImpl
+import arch.screen.persons.presentation.list.PersonsListViewModel
 import arch.screen.persons.presentation.router.PersonsRouter
 import arch.screen.persons.presentation.router.PersonsRouterImpl
 import arch.screen.persons.screen_state.PersonsStateMachine
@@ -79,5 +80,9 @@ fun PersonsActivity.createDi() = Kodein.Module {
 
     bind<PersonsCreateViewModel>() with singleton {
         PersonsCreateViewModelImpl()
+    }
+
+    bind<PersonsListViewModel>() with singleton {
+        PersonsListViewModel()
     }
 }
