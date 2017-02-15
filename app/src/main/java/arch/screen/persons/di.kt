@@ -97,8 +97,8 @@ fun PersonsActivity.createDi() = Kodein.Module {
         PersonsCommonState()
     }
 
-    bind<PersonsUiContainer>() with singleton {
-        PersonsUiContainer(
+    bind<PersonsScreen>() with singleton {
+        PersonsScreen(
             commonView = instance(),
             createView = instance(),
             filterView = instance(),

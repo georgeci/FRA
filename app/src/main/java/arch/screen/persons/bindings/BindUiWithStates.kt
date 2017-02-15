@@ -1,7 +1,7 @@
 package arch.screen.persons.bindings
 
 import arch.screen.persons.PersonsStateContainer
-import arch.screen.persons.PersonsUiContainer
+import arch.screen.persons.PersonsScreen
 import arch.screen.persons.presentation.common.bindPersonsCommonUiWithState
 import arch.screen.persons.presentation.create.bindPersonsCreateUiWithState
 import arch.screen.persons.presentation.filter.bindPersonsFilterUiWithState
@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 fun bindUiWithStates(
-    ui: PersonsUiContainer,
+    ui: PersonsScreen,
     states: PersonsStateContainer,
     schedulers: SchedulersFactory
 ): Disposable = CompositeDisposable(

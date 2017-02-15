@@ -20,7 +20,7 @@ import io.reactivex.disposables.CompositeDisposable
 class PersonsActivity : BaseActivity() {
     private val injector = KodeinInjector()
 
-    private val uiProvider by injector.provider<PersonsUiContainer>()
+    private val uiProvider by injector.provider<PersonsScreen>()
     private val states by injector.instance<PersonsStateContainer>()
 
     private val lifecycleStreams: LifecycleStreams by injector.instance()

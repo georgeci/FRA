@@ -2,7 +2,7 @@ package arch.screen.persons.bindings
 
 import arch.domain.interactor.GetPersonsInteractor
 import arch.screen.persons.PersonsStateContainer
-import arch.screen.persons.PersonsUiContainer
+import arch.screen.persons.PersonsScreen
 import arch.screen.persons.features.bindGetPersonsListFeature
 import arch.screen.persons.features.bindNavigationToDetailsFeature
 import arch.screen.persons.presentation.android.LifecycleStreams
@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 fun bindScreenWithFeatures(
-    ui: PersonsUiContainer,
+    ui: PersonsScreen,
     states: PersonsStateContainer,
     stateMachine: PersonsStateMachine,
     lifecycleStreams: LifecycleStreams,

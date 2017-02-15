@@ -6,7 +6,7 @@ import arch.screen.persons.presentation.filter.PersonsFilterView
 import arch.screen.persons.presentation.list.PersonsListView
 import arch.screen.persons.presentation.router.PersonsRouter
 
-class PersonsUiContainer(
+class PersonsScreen(
     val commonView: PersonsCommonView,
     val createView: PersonsCreateView,
     val filterView: PersonsFilterView,
