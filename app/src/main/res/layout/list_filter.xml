@@ -1,0 +1,16 @@
+<android.support.design.widget.TextInputLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/list"
+    >
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:saveEnabled="false"
+        />
+</android.support.design.widget.TextInputLayout>
