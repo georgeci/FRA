@@ -7,4 +7,49 @@
     tools:context="arch.screen.person_detail.DetailsActivity"
     >
 
+    <FrameLayout
+        android:id="@+id/person_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/person_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/person_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Error"
+            />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/person_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Progress"
+            />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="edit"
+        />
 </LinearLayout>
