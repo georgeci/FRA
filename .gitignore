@@ -9,9 +9,11 @@
 /captures
 
 #user-specific idea settins
-/.idea/
+/.idea/*
+!/.idea/codeStyleSettings.xml
 *.iml
 
 #generated
 /build
 /*/build
+/projectFilesBackup/

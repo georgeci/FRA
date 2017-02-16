@@ -1,4 +1,4 @@
-package arch.screen.persons
+package arch.screen.persons.presentation.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -8,12 +8,19 @@ import arch.R
 import arch.domain.model.Person
 import extensions.inflate
 import extensions.publishRelay
+import io.reactivex.functions.Consumer
 
 class PersonAdapter : RecyclerView.Adapter<PersonVh>() {
 
     val clicks = publishRelay<Person>()
 
     val items = mutableListOf<Person>()
+
+    val update = Consumer<List<Person>>{
+        items.clear()
+        items.addAll(it)
+        notifyDataSetChanged()
+    }
 
     override fun onBindViewHolder(holder: PersonVh, position: Int) {
         val person = items[position]

@@ -2,45 +2,67 @@ package arch.screen.persons
 
 import android.os.Bundle
 import arch.R
-import arch.screen.PersonsConnector
+import arch.domain.interactor.GetPersonsInteractor
+import arch.screen.persons.bindings.bindScreenWithFeatures
+import arch.screen.persons.bindings.bindUiWithStates
+import arch.screen.persons.presentation.android.LifecycleStreams
+import arch.screen.persons.screen_state.PersonsStateMachine
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.KodeinAware
 import com.github.salomonbrys.kodein.KodeinInjector
 import com.github.salomonbrys.kodein.instance
+import com.github.salomonbrys.kodein.provider
 import extensions.BaseActivity
+import extensions.SchedulersFactory
+import extensions.plusAssign
+import io.reactivex.disposables.CompositeDisposable
 
 class PersonsActivity : BaseActivity() {
-    val injector = KodeinInjector()
+    private val injector = KodeinInjector()
 
-    val view: PersonsView by injector.instance()
-    val presenter: PersonsPresenter by injector.instance()
-    val connector: PersonsConnector by injector.instance()
-    val router: PersonsRouter by injector.instance()
+    private val uiProvider by injector.provider<PersonsScreen>()
+    private val states by injector.instance<PersonsStateContainer>()
+
+    private val lifecycleStreams: LifecycleStreams by injector.instance()
+
+    private val interactor: GetPersonsInteractor by injector.instance()
+    private val stateMachine: PersonsStateMachine by injector.instance()
+    private val schedulers: SchedulersFactory by injector.instance()
+
+    private val screenDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.list)
-        injector.inject(Kodein{
+        injector.inject(Kodein {
             extend((application as KodeinAware).kodein)
             import(createDi())
         })
-        presenter//init
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.list)
+        if (savedInstanceState == null) {
+            lifecycleStreams.firstLaunchStream.accept(Any())
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        connector.attachView(view)
-        connector.attachRouter(router)
+        screenDisposable += bindScreenWithFeatures(
+            ui = uiProvider(),
+            states = states,
+            schedulers = schedulers,
+            stateMachine = stateMachine,
+            interactor = interactor,
+            lifecycleStreams = lifecycleStreams
+        )
+        screenDisposable += bindUiWithStates(
+            ui = uiProvider(),
+            states = states,
+            schedulers = schedulers
+        )
     }
 
     override fun onPause() {
+        String
         super.onPause()
-        connector.dettachView()
-        connector.dettachRouter()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.dispose()
+        screenDisposable.clear()
     }
 }
