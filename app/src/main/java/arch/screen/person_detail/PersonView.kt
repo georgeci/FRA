@@ -16,12 +16,12 @@ import io.reactivex.functions.Consumer
 interface PersonInputView {
     val showContent: Consumer<Person>
 
-    val showScreenState: Consumer<Any>
+    val showScreenState: Consumer<PersonScreenState>
 }
 
 interface PersonOutputView {
     val editClickStream: Observable<*>
-    val refreshStream: Observable<*>
+    val refreshStream: Observable<Unit>
 }
 
 class PersonViewImpl(
@@ -33,7 +33,6 @@ class PersonViewImpl(
     val refresher = view.findViewById(R.id.refresh) as SwipeRefreshLayout
     val title = view.findViewById(R.id.person_title) as TextView
     val editButton = view.findViewById(R.id.edit_button) as Button
-
 
     override val editClickStream: Observable<Unit> = editButton
         .clicks()
@@ -50,7 +49,11 @@ class PersonViewImpl(
     override val showContent = Consumer<Person> {
         title.text = it.name
     }
-    override val showScreenState = Consumer<Any> {
 
+    override val showScreenState = Consumer<PersonScreenState> {
+
+        when (it) {
+
+        }
     }
 }
